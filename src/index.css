@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.verifyWrap {
+  margin: 0 !important;
+}
