@@ -6,9 +6,103 @@ import CaptchaSlider from "../components/CaptchaSlider";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [captchaPassed, setCaptchaPassed] = useState(false); // state untuk mengecek captcha
+  const [formData, setFormData] = useState({
+    UserName: "",
+    Password: "",
+  });
+  const navigate = useNavigate();
+
+  const handleChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    if (
+      formData.UserName !== "testcase" ||
+      formData.Password !== "testcase123"
+    ) {
+      return toast.error("Invalid Username or Password!");
+    }
+
+    if (!captchaPassed) {
+      return toast.error("Please solve captcha first!");
+    }
+
+    const requestData = {
+      ...formData,
+      Company: "d3170153-6b16-4397-bf89-96533ee149ee",
+      browserInfo: {
+        chrome: true,
+        chrome_view: false,
+        chrome_mobile: false,
+        chrome_mobile_ios: false,
+        safari: false,
+        safari_mobile: false,
+        msedge: false,
+        msie_mobile: false,
+        msie: false,
+      },
+      machineInfo: {
+        brand: "Apple",
+        model: "",
+        os_name: "Mac",
+        os_version: "10.15",
+        type: "desktop",
+      },
+      osInfo: {
+        android: false,
+        blackberry: false,
+        ios: false,
+        windows: false,
+        windows_phone: false,
+        mac: true,
+        linux: false,
+        chrome: false,
+        firefox: false,
+        gamingConsole: false,
+      },
+      osNameInfo: {
+        name: "Mac",
+        version: "10.15",
+        platform: "",
+      },
+      Device: "web_1703742830368",
+      Model: "Admin Web",
+      Source: "103.242.150.163",
+      Exp: 3,
+    };
+
+    try {
+      const res = await fetch(
+        "https://core.api.elsoft.id/portal/api/auth/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
+      const data = await res.json();
+
+      if (!res.ok) {
+        return toast.error(data.message || "Login failed!");
+      }
+
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error(error.message || "An unexpected error occurred!");
+    }
+  };
 
   const handleIsTrueChange = isTrue => {
     setCaptchaPassed(isTrue);
@@ -41,17 +135,23 @@ export default function Login() {
             <p className="text-neutral-500 font-normal text-sm mb-4">
               Welcome back, please login to your account.
             </p>
-            <div className="">
+            <form onSubmit={handleSubmit}>
               <div className="space-y-3">
                 <Input
+                  inputName="UserName"
+                  inputChange={handleChange}
                   inputIcon={FaUser}
-                  inputName="Username"
+                  inputPlaceholder="Username"
                   inputType="text"
+                  inputValue={formData.UserName}
                 />
                 <Input
-                  inputIcon={FaKey}
                   inputName="Password"
+                  inputChange={handleChange}
+                  inputIcon={FaKey}
+                  inputPlaceholder="Password"
                   inputType="password"
+                  inputValue={formData.Password}
                 />
               </div>
               <div className="my-4">
@@ -73,9 +173,9 @@ export default function Login() {
                 </a>
               </div>
               <div className="my-3">
-                <Button>Login</Button>
+                <Button typeButton={"submit"}>Login</Button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

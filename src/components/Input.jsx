@@ -4,7 +4,14 @@ import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 
 export default function Input(props) {
-  const { inputType, inputName, inputIcon: InputIcon } = props;
+  const {
+    inputType,
+    inputName,
+    inputIcon: InputIcon,
+    inputChange,
+    inputId,
+    inputPlaceholder,
+  } = props;
   const [showPass, setShowPass] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -16,9 +23,12 @@ export default function Input(props) {
       <InputIcon className="text-purple-500" />
       <div className="border-l border-purple-300 h-5 border"></div>
       <input
+        id={inputId}
+        name={inputName}
+        onChange={inputChange}
         className="focus:outline-none w-full text-neutral-700"
         type={showPass ? "text" : inputType}
-        placeholder={inputName}
+        placeholder={inputPlaceholder}
       />
       {inputType === "password" && (
         <button
