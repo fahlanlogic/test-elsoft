@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import Input from "../components/Input";
 import { FaUser } from "react-icons/fa";
@@ -7,14 +8,16 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
-export default function Login() {
+export default function Login({ onLogin }) {
   const [captchaPassed, setCaptchaPassed] = useState(false); // state untuk mengecek captcha
   const [formData, setFormData] = useState({
     UserName: "",
     Password: "",
   });
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["authToken"]);
 
   const handleChange = e => {
     setFormData({
@@ -98,6 +101,7 @@ export default function Login() {
         return toast.error(data.message || "Login failed!");
       }
 
+      setCookie("authToken", data.access_token, { path: "/" });
       navigate("/dashboard");
     } catch (error) {
       toast.error(error.message || "An unexpected error occurred!");
@@ -114,7 +118,7 @@ export default function Login() {
   };
 
   return (
-    <main className="relative">
+    <main className="relative font-quicksand">
       <Toaster
         position="top-right"
         reverseOrder={false}
