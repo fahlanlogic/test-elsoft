@@ -19,9 +19,9 @@ export default function Input(props) {
   };
 
   return (
-    <div className="group flex items-center gap-3 py-1.5 px-3 rounded-md shadow-sm border border-purple-500 focus-within:shadow-md duration-300">
-      <InputIcon className="text-purple-500" />
-      <div className="border-l border-purple-300 h-5 border"></div>
+    <div className="group flex items-center gap-3 py-1.5 px-3 rounded-md shadow-sm border border-blue-500 focus-within:shadow-md duration-300">
+      <InputIcon className="text-blue-500" />
+      <div className="border-l border-blue-300 h-5 border"></div>
       <input
         id={inputId}
         name={inputName}
@@ -34,8 +34,8 @@ export default function Input(props) {
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="text-purple-500">
-          {showPass ? <FaEyeSlash /> : <FaEye className="text-purple-500" />}
+          className="text-blue-500">
+          {showPass ? <FaEyeSlash /> : <FaEye className="text-blue-500" />}
         </button>
       )}
     </div>

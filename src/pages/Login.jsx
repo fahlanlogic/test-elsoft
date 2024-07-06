@@ -124,13 +124,13 @@ export default function Login({ onLogin }) {
         reverseOrder={false}
         // containerStyle={{ marginTop: "65px" }}
       />
-      <div className="h-56 w-full bg-purple-500 absolute -z-50 top-0 left-0"></div>
+      <div className="h-56 w-full bg-blue-500 absolute -z-50 top-0 left-0"></div>
       <div className="min-h-screen w-full flex items-center justify-center">
         <div className="login-box flex bg-white w-full h-screen max-w-4xl max-h-[34rem] rounded-md shadow-xl">
           <div className="w-1/2">
             <img
               className="w-full h-full object-cover rounded-l-md"
-              src="https://img.freepik.com/free-photo/3d-illustration-computer-monitor-login-screen_107791-16390.jpg?t=st=1720152739~exp=1720156339~hmac=fb343fb0864c5d300809f38774f0415297ce1fc099201557b63d05a8be8508d4&w=740"
+              src="https://img.freepik.com/free-photo/bank-card-mobile-phone-online-payment_107791-16646.jpg?t=st=1720188112~exp=1720191712~hmac=15ce1062b6d37129e3effb5f7629e7cc2b1fc22b2f2147d2254d1db1d3d90f40&w=826"
               alt=""
             />
           </div>
@@ -166,7 +166,7 @@ export default function Login({ onLogin }) {
                   <input
                     id="remember"
                     type="checkbox"
-                    className="w-4 h-4 accent-purple-500"
+                    className="w-4 h-4 accent-blue-500"
                   />
                   <label htmlFor="remember">Remember Me</label>
                 </div>
