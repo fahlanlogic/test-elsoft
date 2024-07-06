@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// src/components/PrivateRoute.jsx
 import { Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 

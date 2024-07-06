@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import TableItem from "../elements/TableItem";
-import ButtonAddItem from "../elements/ButtonAddItem";
+import TableItem from "../components/TableItem";
+import ModalAddItem from "../components/ModalAddItem";
+import { Toaster } from "react-hot-toast";
 
-export default function ItemComponent() {
+export default function ItemLayout() {
   const [items, setItems] = useState([]);
   const [cookies] = useCookies(["authToken"]);
 
@@ -33,9 +34,14 @@ export default function ItemComponent() {
 
   return (
     <main className="text-neutral-700 p-2 w-full flex-1 pt-6">
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        // containerStyle={{ marginTop: "65px" }}
+      />
       <div className="flex items-center mb-8 mt-2 gap-12">
         <h1 className="text-3xl font-bold ">List Item</h1>
-        {items && items.length > 0 && <ButtonAddItem items={items} />}
+        {items && items.length > 0 && <ModalAddItem items={items} />}
       </div>
       <div className="border border-b border-neutral-200 w-[98%] mb-8"></div>
       <div className="bg-white w-full min-h-[80vh] rounded-md p-4">

@@ -2,7 +2,7 @@ import { IoBagAdd } from "react-icons/io5";
 import { LuBoxes } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
-export default function DashboardComponent() {
+export default function DashboardLayout() {
   const paramItems = new URLSearchParams({
     TypeName: "Product",
     Type: "Product",

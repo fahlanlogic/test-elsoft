@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import Input from "../elements/Input";
+import Input from "../components/Input";
 import { FaUser } from "react-icons/fa";
 import { FaKey } from "react-icons/fa";
-import CaptchaSlider from "../components/CaptchaSlider";
+import CaptchaSlider from "../layouts/CaptchaSlider";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import Button from "../elements/Button";
+import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 

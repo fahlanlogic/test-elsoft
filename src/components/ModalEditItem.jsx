@@ -1,22 +1,27 @@
+/* eslint-disable react/prop-types */
 import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
-import { TiPlus } from "react-icons/ti";
+import toast from "react-hot-toast";
 
-export default function ButtonAddItem(items) {
+export default function ModalEditItem({
+  openModal,
+  setOpenModal,
+  item,
+  items,
+}) {
+  console.log("ini Oid", item.Oid);
   const [cookie] = useCookies(["authToken"]);
-  const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState({
-    Company: "d3170153-6b16-4397-bf89-96533ee149ee",
-    ItemType: "3adfb47a-eab4-4d44-bde9-efae1bec8543",
-    Code: "",
-    Label: "",
-    ItemGroup: "55692914-7402-4dd8-adec-40a823222b3e",
-    ItemAccountGroup: "4fc9683e-f22b-47c6-9525-b054ba24ea42",
-    ItemUnit: "5daf6a23-472d-4921-9945-57674d5fd1aa",
-    IsActive: "false",
+    Company: item.Company,
+    ItemType: item.ItemType,
+    Code: item.Code,
+    Label: item.Label,
+    ItemGroup: item.ItemGroup,
+    ItemAccountGroup: item.ItemAccountGroup,
+    ItemUnit: item.ItemUnit,
+    IsActive: item.IsActive,
   });
-  console.log(formData);
 
   const handleChange = e => {
     const { name, value, type, checked } = e.target;
@@ -26,41 +31,30 @@ export default function ButtonAddItem(items) {
     });
   };
 
-  // useEffect(() => {
-  //   setFormData({
-  //     ...formData,
-  //     Company: "d3170153-6b16-4397-bf89-96533ee149ee",
-  //     ItemType: "3adfb47a-eab4-4d44-bde9-efae1bec8543",
-  //     ItemGroup: "55692914-7402-4dd8-adec-40a823222b3e",
-  //     ItemAccountGroup: "5daf6a23-472d-4921-9945-57674d5fd1aa",
-  //     ItemUnit: "5daf6a23-472d-4921-9945-57674d5fd1aa",
-  //   });
-  // }, []);
-
   // function yg diperlukan untuk menghapus duplikasi ItemGroup
-  const uniqueItemGroups = [
-    ...new Set(items.items.map(item => item.ItemGroup)),
-  ];
+  const uniqueItemGroups = [...new Set(items.map(item => item.ItemGroup))];
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await fetch("https://app.api.elsoft.id/admin/api/v1/item", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${cookie.authToken}`,
-        },
-        body: JSON.stringify(formData),
-      });
-      console.log("ini resnya", res);
+      const res = await fetch(
+        `https://app.api.elsoft.id/admin/api/v1/item/save?Oid=${item.Oid}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.authToken}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (!res.ok) {
-        const errorData = await res.json();
-        console.error("Error response", errorData);
-        throw new Error(errorData.message || "Something went wrong");
+        const data = res.json();
+        return toast.error(data.message || "Fail to add item!");
       }
-      const data = res.json();
-      console.log("ini datanya", data);
+
+      toast.success("Item updated successfully!");
+      setOpenModal(false);
     } catch (error) {
       console.log(error);
     }
@@ -72,11 +66,6 @@ export default function ButtonAddItem(items) {
 
   return (
     <>
-      <Button
-        className="bg-gradient-to-b px-2 rounded-md shadow-md from-blue-800 to-blue-900 text-white h-fit py-0.5 w-fit text-sm font-medium hover:translate-x-[2px] hover:translate-y-[2px] duration-300"
-        onClick={() => setOpenModal(true)}>
-        <TiPlus className="font-medium" /> Add Item
-      </Button>
       <Modal
         className="font-quicksand"
         show={openModal}
@@ -88,7 +77,7 @@ export default function ButtonAddItem(items) {
             <div className="relative bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg max-w-2xl w-full z-10">
               <Modal.Header className="px-0 pb-6">
                 <span className="text-xl font-bold text-gray-900 dark:text-white">
-                  Add Product
+                  Edit Product
                 </span>
               </Modal.Header>
               <Modal.Body>
@@ -99,13 +88,13 @@ export default function ButtonAddItem(items) {
                     <div className="flex-1 text-sm">
                       <span>Company</span>
                       <p className="font-semibold bg-neutral-100 py-1 px-2 rounded-md mt-2">
-                        {items.items[0].CompanyName}
+                        {item.CompanyName}
                       </p>
                     </div>
                     <div className="flex-1 text-sm">
                       <span>Item Type</span>
                       <p className="font-semibold bg-neutral-100 py-1 px-2 rounded-md mt-2">
-                        {items.items[0].ItemTypeName}
+                        {item.ItemTypeName}
                       </p>
                     </div>
                   </div>
@@ -123,6 +112,7 @@ export default function ButtonAddItem(items) {
                         onChange={handleChange}
                         className="rounded-sm"
                         id="code"
+                        defaultValue={item.Code}
                         placeholder="ex. HP/KK/LK/0001"
                         required
                       />
@@ -139,6 +129,7 @@ export default function ButtonAddItem(items) {
                         type="text"
                         onChange={handleChange}
                         id="Label"
+                        defaultValue={item.Label}
                         placeholder="ex. Smartphone"
                         required
                       />
@@ -157,10 +148,10 @@ export default function ButtonAddItem(items) {
                         name="ItemGroup"
                         id="ItemGroup"
                         onChange={handleChange}
-                        value={formData.ItemGroup}>
+                        defaultValue={formData.ItemGroup}>
                         {uniqueItemGroups.map(itemGroup => {
                           // untuk memetakan agar ItemGroup dengan ItemGroupName sinkron
-                          const item = items.items.find(
+                          const item = items.find(
                             item => item.ItemGroup === itemGroup
                           );
                           return (
