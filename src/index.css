@@ -6,3 +6,9 @@
 .verifyWrap {
   margin: 0 !important;
 }
+
+button > span {
+  padding: 0 0 !important;
+  gap: 2px;
+  align-items: center;
+}

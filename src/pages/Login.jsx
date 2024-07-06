@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import Input from "../components/Input";
+import Input from "../elements/Input";
 import { FaUser } from "react-icons/fa";
 import { FaKey } from "react-icons/fa";
 import CaptchaSlider from "../components/CaptchaSlider";
