@@ -6,11 +6,11 @@ import { FaKey } from "react-icons/fa";
 import CaptchaSlider from "../components/CaptchaSlider";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import Button from "../components/Button";
+import Button from "../elements/Button";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const [captchaPassed, setCaptchaPassed] = useState(false); // state untuk mengecek captcha
   const [formData, setFormData] = useState({
     UserName: "",
