@@ -6,6 +6,7 @@ import PrivateRoute from "./layouts/PrivateRoute";
 import { CookiesProvider } from "react-cookie";
 import Item from "./pages/Item";
 import Stock from "./pages/Stock";
+import EditStock from "./pages/EditStock";
 
 export default function App() {
   return (
@@ -27,6 +28,10 @@ export default function App() {
           <Route
             path="/list/stock"
             element={<PrivateRoute component={Stock} />}
+          />
+          <Route
+            path="/form/stock"
+            element={<PrivateRoute component={EditStock} />}
           />
         </Routes>
       </BrowserRouter>

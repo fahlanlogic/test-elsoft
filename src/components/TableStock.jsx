@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Dropdown } from "flowbite-react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FiEdit } from "react-icons/fi";
@@ -6,6 +7,7 @@ import { useState } from "react";
 import ModalEditItem from "./ModalEditItem";
 import { useCookies } from "react-cookie";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 export default function TableStocks({ stocks }) {
@@ -13,6 +15,7 @@ export default function TableStocks({ stocks }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [cookie] = useCookies(["authToken"]);
   const [itemList, setItemList] = useState(stocks);
+  const navigate = useNavigate();
 
   const handleEditClick = item => {
     setSelectedItem(item);
@@ -43,6 +46,10 @@ export default function TableStocks({ stocks }) {
     }
   };
 
+  const handleDetailStock = item => {
+    navigate(`/form/stock?item=${item.Oid}`);
+  };
+
   return (
     <div className="rounded-md overflow-hidden">
       <table className="table-auto w-full border-spacing-0.5">
@@ -61,7 +68,7 @@ export default function TableStocks({ stocks }) {
           {stocks.map(stock => (
             <tr
               key={stock.Oid}
-              className="text-sm odd:bg-neutral-100 font-semibold">
+              className="text-sm odd:bg-neutral-100 font-semibold hover:bg-neutral-200">
               <td className="px-2 py-1 inline-flex justify-center w-full">
                 <Dropdown
                   label={
@@ -86,12 +93,36 @@ export default function TableStocks({ stocks }) {
                   </Dropdown.Item>
                 </Dropdown>
               </td>
-              <td className="px-2 py-1 text-center">{stock.RowCountNumber}</td>
-              <td className="px-2 py-1">{stock.CompanyName}</td>
-              <td className="px-2 py-1">{stock.Code}</td>
-              <td className="px-2 py-1 text-center">{stock.Date}</td>
-              <td className="px-2 py-1">{stock.AccountName}</td>
-              <td className="px-2 py-1 text-center">{stock.StatusName}</td>
+              <td
+                onClick={() => handleDetailStock(stock)}
+                className="px-2 py-1 text-center">
+                {stock.RowCountNumber}
+              </td>
+              <td
+                onClick={() => handleDetailStock(stock)}
+                className="px-2 py-1">
+                {stock.CompanyName}
+              </td>
+              <td
+                onClick={() => handleDetailStock(stock)}
+                className="px-2 py-1">
+                {stock.Code}
+              </td>
+              <td
+                onClick={() => handleDetailStock(stock)}
+                className="px-2 py-1 text-center">
+                {stock.Date}
+              </td>
+              <td
+                onClick={() => handleDetailStock(stock)}
+                className="px-2 py-1">
+                {stock.AccountName}
+              </td>
+              <td
+                onClick={() => handleDetailStock(stock)}
+                className="px-2 py-1 text-center">
+                {stock.StatusName}
+              </td>
             </tr>
           ))}
         </tbody>
