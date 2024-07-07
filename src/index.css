@@ -21,3 +21,12 @@ button > span {
 div.z-10.w-fit.divide-y.divide-gray-100.rounded.shadow.transition-opacity.duration-100.border.border-gray-200.bg-white.text-gray-900 {
   border-radius: 0.375rem;
 }
+
+input[type="text"], input[type="password"] {
+  border-width: 0px;
+  padding: 0px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  box-shadow: none;
+}

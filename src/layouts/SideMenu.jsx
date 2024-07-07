@@ -10,6 +10,14 @@ export default function SideMenu() {
     Company: "d3170153-6b16-4397-bf89-96533ee149ee",
     CompanyName: "testcase",
   });
+  const paramStock = new URLSearchParams({
+    Company: "d3170153-6b16-4397-bf89-96533ee149ee",
+    CompanyName: "testcase",
+    DateFrom: "2024-07-01",
+    DateTo: "2024-07-31",
+    Status: "all",
+    page: "1",
+  });
 
   return (
     <nav className="shadow-lg bg-white text-blue-900 max-w-20 min-h-[98vh] flex-1 inline-flex flex-col items-center justify-between gap-8">
@@ -31,7 +39,7 @@ export default function SideMenu() {
           <IoBagAdd className="text-3xl hover:translate-x-1 duration-300" />
         </Link>
         <Link
-          to={`/list/transaction`}
+          to={`/list/stock?${paramStock.toString()}`}
           title="Transaction">
           <LuBoxes className="text-3xl hover:translate-x-1 duration-300" />
         </Link>

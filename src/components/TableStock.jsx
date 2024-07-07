@@ -8,11 +8,11 @@ import { useCookies } from "react-cookie";
 import toast from "react-hot-toast";
 
 /* eslint-disable react/prop-types */
-export default function TableItem({ items }) {
+export default function TableStocks({ stocks }) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [cookie] = useCookies(["authToken"]);
-  const [itemList, setItemList] = useState(items);
+  const [itemList, setItemList] = useState(stocks);
 
   const handleEditClick = item => {
     setSelectedItem(item);
@@ -34,7 +34,7 @@ export default function TableItem({ items }) {
       const data = res.json();
       if (res.ok) {
         toast.success("Item deleted successfully");
-        setItemList(prevItems => prevItems.filter(i => i.Oid !== item.Oid));
+        setItemList(prevstocks => prevstocks.filter(i => i.Oid !== item.Oid));
       } else {
         toast.error(data.message);
       }
@@ -49,18 +49,18 @@ export default function TableItem({ items }) {
         <thead className="bg-blue-900 text-white text-sm">
           <tr>
             <th className="border-l border border-white py-1.5">Action</th>
-            <th className="border-l border border-white py-1.5">Title</th>
+            <th className="border-l border border-white py-1.5">No</th>
             <th className="border-l border border-white py-1.5">Company</th>
             <th className="border-l border border-white py-1.5">Code</th>
-            <th className="border-l border border-white py-1.5">Item Group</th>
-            <th className="border-l border border-white py-1.5">Is Active</th>
-            <th className="border-l border border-white py-1.5">Balance</th>
+            <th className="border-l border border-white py-1.5">Date</th>
+            <th className="border-l border border-white py-1.5">Account</th>
+            <th className="border-l border border-white py-1.5">Status</th>
           </tr>
         </thead>
         <tbody>
-          {items.map(item => (
+          {stocks.map(stock => (
             <tr
-              key={item.Oid}
+              key={stock.Oid}
               className="text-sm odd:bg-neutral-100 font-semibold">
               <td className="px-2 py-1 inline-flex justify-center w-full">
                 <Dropdown
@@ -69,7 +69,7 @@ export default function TableItem({ items }) {
                   }
                   dismissOnClick={false}>
                   <Dropdown.Item
-                    onClick={() => handleEditClick(item)}
+                    onClick={() => handleEditClick(stock)}
                     className="flex gap-2 hover:bg-neutral-100">
                     <span>
                       <FiEdit className="text-sm text-neutral-700" />
@@ -77,7 +77,7 @@ export default function TableItem({ items }) {
                     Edit Product
                   </Dropdown.Item>
                   <Dropdown.Item
-                    onClick={() => handleDeleteItem(item)}
+                    onClick={() => handleDeleteItem(stock)}
                     className="flex gap-2 hover:bg-neutral-100">
                     <span>
                       <RiDeleteBin2Line className="text-sm text-neutral-700" />
@@ -86,12 +86,12 @@ export default function TableItem({ items }) {
                   </Dropdown.Item>
                 </Dropdown>
               </td>
-              <td className="px-2 py-1">{item.Label}</td>
-              <td className="px-2 py-1">{item.CompanyName}</td>
-              <td className="px-2 py-1">{item.Code}</td>
-              <td className="px-2 py-1">{item.ItemGroupName}</td>
-              <td className="px-2 py-1 text-center ">{item.IsActive}</td>
-              <td className="px-2 py-1">{item.BalanceAmount}</td>
+              <td className="px-2 py-1 text-center">{stock.RowCountNumber}</td>
+              <td className="px-2 py-1">{stock.CompanyName}</td>
+              <td className="px-2 py-1">{stock.Code}</td>
+              <td className="px-2 py-1 text-center">{stock.Date}</td>
+              <td className="px-2 py-1">{stock.AccountName}</td>
+              <td className="px-2 py-1 text-center">{stock.StatusName}</td>
             </tr>
           ))}
         </tbody>
@@ -101,7 +101,7 @@ export default function TableItem({ items }) {
           openModal={openModal}
           setOpenModal={setOpenModal}
           item={selectedItem}
-          items={items}
+          // items={items}
         />
       )}
     </div>

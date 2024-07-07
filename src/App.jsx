@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./layouts/PrivateRoute";
 import { CookiesProvider } from "react-cookie";
 import Item from "./pages/Item";
+import Stock from "./pages/Stock";
 
 export default function App() {
   return (
@@ -22,6 +23,10 @@ export default function App() {
           <Route
             path="/list/item"
             element={<PrivateRoute component={Item} />}
+          />
+          <Route
+            path="/list/stock"
+            element={<PrivateRoute component={Stock} />}
           />
         </Routes>
       </BrowserRouter>

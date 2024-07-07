@@ -9,6 +9,14 @@ export default function DashboardLayout() {
     Company: "d3170153-6b16-4397-bf89-96533ee149ee",
     CompanyName: "testcase",
   });
+  const paramStock = new URLSearchParams({
+    Company: "d3170153-6b16-4397-bf89-96533ee149ee",
+    CompanyName: "testcase",
+    DateFrom: "2024-07-01",
+    DateTo: "2024-07-31",
+    Status: "all",
+    page: "1",
+  });
 
   return (
     <main className="text-neutral-700 p-2 w-full flex-1 pt-6">
@@ -25,7 +33,7 @@ export default function DashboardLayout() {
           </div>
         </Link>
         <Link
-          to={`/list/transaction`}
+          to={`/list/stock?${paramStock.toString()}`}
           className="flex items-center gap-4 bg-white rounded-md p-4 shadow-md hover:shadow-none duration-300">
           <LuBoxes className="text-5xl bg-blue-900 text-white rounded-md p-2" />
           <div>
