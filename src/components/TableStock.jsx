@@ -22,10 +22,10 @@ export default function TableStocks({ stocks }) {
     setOpenModal(true);
   };
 
-  const handleDeleteItem = async item => {
+  const handleDeleteStock = async item => {
     try {
       const res = await fetch(
-        `https://app.api.elsoft.id/admin/api/v1/data/item/delete?Oid=${item.Oid}`,
+        `https://app.api.elsoft.id/admin/api/v1/stockissue/${item.Oid}`,
         {
           method: "DELETE",
           headers: {
@@ -34,12 +34,15 @@ export default function TableStocks({ stocks }) {
           },
         }
       );
-      const data = res.json();
+      const result = res.json();
       if (res.ok) {
         toast.success("Item deleted successfully");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
         setItemList(prevstocks => prevstocks.filter(i => i.Oid !== item.Oid));
       } else {
-        toast.error(data.message);
+        toast.error(result.message);
       }
     } catch (error) {
       toast.error(error);
@@ -84,7 +87,7 @@ export default function TableStocks({ stocks }) {
                     Edit Product
                   </Dropdown.Item>
                   <Dropdown.Item
-                    onClick={() => handleDeleteItem(stock)}
+                    onClick={() => handleDeleteStock(stock)}
                     className="flex gap-2 hover:bg-neutral-100">
                     <span>
                       <RiDeleteBin2Line className="text-sm text-neutral-700" />
