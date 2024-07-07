@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Dropdown } from "flowbite-react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FiEdit } from "react-icons/fi";
@@ -22,7 +23,7 @@ export default function TableItem({ items }) {
   const handleDeleteItem = async item => {
     try {
       const res = await fetch(
-        `https://app.api.elsoft.id/admin/api/v1/data/item/delete?Oid=${item.Oid}`,
+        `https://app.api.elsoft.id/admin/api/v1/data/item/${item.Oid}`,
         {
           method: "DELETE",
           headers: {
@@ -35,6 +36,9 @@ export default function TableItem({ items }) {
       if (res.ok) {
         toast.success("Item deleted successfully");
         setItemList(prevItems => prevItems.filter(i => i.Oid !== item.Oid));
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       } else {
         toast.error(data.message);
       }
