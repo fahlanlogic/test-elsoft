@@ -22,11 +22,11 @@ div.z-10.w-fit.divide-y.divide-gray-100.rounded.shadow.transition-opacity.durati
   border-radius: 0.375rem;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"].input-login, input[type="password"].input-login {
   border-width: 0px;
   padding: 0px;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus.input-login, input[type="password"]:focus.input-login {
   box-shadow: none;
 }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-// import ModalAddItem from "../components/ModalAddItem";
 import { Toaster } from "react-hot-toast";
 import TableStocks from "../components/TableStock";
+import ModalAddStock from "../components/ModalAddStock";
 
 export default function StockLayout() {
   const [stocks, setStocks] = useState([]);
@@ -41,7 +41,7 @@ export default function StockLayout() {
       />
       <div className="flex items-center mb-8 mt-2 gap-12">
         <h1 className="text-3xl font-bold ">List Stock</h1>
-        {/* {items && items.length > 0 && <ModalAddItem items={iems} />} */}
+        {stocks && stocks.length > 0 && <ModalAddStock stocks={stocks} />}
       </div>
       <div className="border border-b border-neutral-200 w-[98%] mb-8"></div>
       <div className="bg-white w-full min-h-[80vh] rounded-md p-4">

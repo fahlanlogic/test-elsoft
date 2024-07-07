@@ -26,7 +26,7 @@ export default function Input(props) {
         id={inputId}
         name={inputName}
         onChange={inputChange}
-        className="focus:outline-0 focus:border-0 w-full text-neutral-700"
+        className="input-login focus:outline-0 focus:border-0 w-full text-neutral-700"
         type={showPass ? "text" : inputType}
         placeholder={inputPlaceholder}
       />
