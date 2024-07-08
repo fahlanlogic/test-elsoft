@@ -46,8 +46,8 @@ export default function SideMenu() {
 
   return (
     <>
-      <nav className="shadow-lg py-7 bg-white text-blue-900 max-w-20 min-h-[98vh] flex-1 inline-flex flex-col items-center justify-between gap-8">
-        <div className="flex flex-col items-center gap-1">
+      <nav className="relative z-50 bottom-0 shadow-lg py-4 md:py-7 bg-white text-blue-900 w-full md:max-w-20 h-fit md:min-h-[98vh] md:flex-1 inline-flex flex-row md:flex-col items-center justify-around md:justify-between md:gap-8">
+        <div className="hidden md:flex flex-col items-center gap-1">
           <img
             src="/logo-elsoft.png"
             alt=""
@@ -55,8 +55,8 @@ export default function SideMenu() {
           />
           <p className="text-sm">testcase</p>
         </div>
-        <div className="border border-b border-neutral-200 w-[70%]"></div>
-        <div className="flex flex-col gap-8 flex-1">
+        <div className="hidden md:block border border-b border-neutral-200 w-[70%]"></div>
+        <div className="flex md:flex-col md:gap-8 justify-between">
           <Popover
             className="border-0 outline-0 rounded-sm shadow-md bg-white"
             trigger="hover"
@@ -84,16 +84,18 @@ export default function SideMenu() {
               <LuBoxes className="text-3xl hover:-translate-x-1 duration-300" />
             </Link>
           </Popover>
+          <div className="">
+            <Popover
+              className="border-0 outline-0 rounded-sm shadow-md bg-white"
+              trigger="hover"
+              content={contentPopover("Logout")}
+              placement="right">
+              <button onClick={handleLogout}>
+                <IoLogOut className="text-3xl hover:-translate-x-1 duration-300 cursor-pointer" />
+              </button>
+            </Popover>
+          </div>
         </div>
-        <Popover
-          className="border-0 outline-0 rounded-sm shadow-md bg-white"
-          trigger="hover"
-          content={contentPopover("Logout")}
-          placement="right">
-          <button onClick={handleLogout}>
-            <IoLogOut className="text-3xl hover:-translate-x-1 duration-300 cursor-pointer" />
-          </button>
-        </Popover>
       </nav>
       {openModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50">
