@@ -9,7 +9,7 @@ export default function EditStockForm(detailStock) {
   const [editedStock, setEditedStock] = useState({});
   const [originalStock, setOriginalStock] = useState(stock);
   const [stocks, setStocks] = useState([]);
-  console.log(editedStock);
+  // console.log(editedStock);
 
   useEffect(() => {
     // update editedStock dan originalStock setelah stock terinisialisasi

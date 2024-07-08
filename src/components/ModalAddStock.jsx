@@ -16,7 +16,6 @@ export default function ModalAddStock(stocks) {
     AccountName: "",
     Note: "",
   });
-  console.log(formData);
 
   useEffect(() => {
     if (stocks.stocks) {

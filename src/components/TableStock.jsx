@@ -79,12 +79,12 @@ export default function TableStocks({ stocks }) {
                   }
                   dismissOnClick={false}>
                   <Dropdown.Item
-                    onClick={() => handleEditClick(stock)}
+                    onClick={() => handleDetailStock(stock)}
                     className="flex gap-2 hover:bg-neutral-100">
                     <span>
                       <FiEdit className="text-sm text-neutral-700" />
                     </span>{" "}
-                    Edit Product
+                    Edit Stock
                   </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => handleDeleteStock(stock)}
@@ -92,7 +92,7 @@ export default function TableStocks({ stocks }) {
                     <span>
                       <RiDeleteBin2Line className="text-sm text-neutral-700" />
                     </span>{" "}
-                    Delete Product
+                    Delete Stock
                   </Dropdown.Item>
                 </Dropdown>
               </td>
