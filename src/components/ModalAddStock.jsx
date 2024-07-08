@@ -1,5 +1,5 @@
 import { Button, Label, Modal, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import toast from "react-hot-toast";
 import { TiPlus } from "react-icons/ti";
@@ -16,6 +16,37 @@ export default function ModalAddStock(stocks) {
     AccountName: "",
     Note: "",
   });
+  console.log(formData);
+
+  useEffect(() => {
+    if (stocks.stocks) {
+      const fetchAccountStocks = async () => {
+        try {
+          const res = await fetch(
+            "https://app.api.elsoft.id/admin/api/v1/stockissue/list",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${cookie.authToken}`,
+              },
+            }
+          );
+
+          const data = await res.json();
+          setFormData({
+            ...formData,
+            Account: data.data[0].Account,
+            AccountName: data.data[0].AccountName,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchAccountStocks();
+    }
+  }, [cookie.authToken]);
 
   const handleChange = e => {
     const { name, value } = e.target;
