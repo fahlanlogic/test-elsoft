@@ -54,24 +54,24 @@ export default function TableStocks({ stocks }) {
   };
 
   return (
-    <div className="rounded-md overflow-hidden">
-      <table className="table-auto w-full border-spacing-0.5">
+    <div className="rounded-sm md:overflow-hidden overflow-x-scroll">
+      <table className="table-auto min-w-full border-spacing-0.5">
         <thead className="bg-blue-900 text-white text-sm">
-          <tr>
-            <th className="border-l border border-white py-1.5">Action</th>
-            <th className="border-l border border-white py-1.5">No</th>
-            <th className="border-l border border-white py-1.5">Company</th>
-            <th className="border-l border border-white py-1.5">Code</th>
-            <th className="border-l border border-white py-1.5">Date</th>
-            <th className="border-l border border-white py-1.5">Account</th>
-            <th className="border-l border border-white py-1.5">Status</th>
+          <tr className="divide-x divide-white whitespace-nowrap">
+            <th className="px-2 py-1.5">Action</th>
+            <th className="px-2 py-1.5">No</th>
+            <th className="px-2 py-1.5">Company</th>
+            <th className="px-2 py-1.5">Code</th>
+            <th className="px-2 py-1.5">Date</th>
+            <th className="px-2 py-1.5">Account</th>
+            <th className="px-2 py-1.5">Status</th>
           </tr>
         </thead>
         <tbody>
           {stocks.map(stock => (
             <tr
               key={stock.Oid}
-              className="text-sm odd:bg-neutral-100 font-semibold hover:bg-neutral-200">
+              className="text-sm whitespace-nowrap odd:bg-neutral-100 font-semibold hover:bg-neutral-200">
               <td className="px-2 py-1 inline-flex justify-center w-full">
                 <Dropdown
                   label={

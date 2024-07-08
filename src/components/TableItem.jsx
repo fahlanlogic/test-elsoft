@@ -48,24 +48,24 @@ export default function TableItem({ items }) {
   };
 
   return (
-    <div className="rounded-md overflow-hidden">
-      <table className="table-auto w-full border-spacing-0.5">
-        <thead className="bg-blue-900 text-white text-sm">
-          <tr>
-            <th className="border-l border border-white py-1.5">Action</th>
-            <th className="border-l border border-white py-1.5">Title</th>
-            <th className="border-l border border-white py-1.5">Company</th>
-            <th className="border-l border border-white py-1.5">Code</th>
-            <th className="border-l border border-white py-1.5">Item Group</th>
-            <th className="border-l border border-white py-1.5">Is Active</th>
-            <th className="border-l border border-white py-1.5">Balance</th>
+    <div className="rounded-sm md:overflow-hidden overflow-x-scroll">
+      <table className="table-auto min-w-full border-spacing-0.5">
+        <thead className="bg-blue-900 text-white text-sm ">
+          <tr className="divide-x divide-white whitespace-nowrap">
+            <th className="px-2 py-1.5">Action</th>
+            <th className="px-2 py-1.5">Title</th>
+            <th className="px-2 py-1.5">Company</th>
+            <th className="px-2 py-1.5">Code</th>
+            <th className="px-2 py-1.5">Item Group</th>
+            <th className="px-2 py-1.5">Is Active</th>
+            <th className="px-2 py-1.5">Balance</th>
           </tr>
         </thead>
         <tbody>
           {items.map(item => (
             <tr
               key={item.Oid}
-              className="text-sm odd:bg-neutral-100 font-semibold">
+              className="text-sm odd:bg-neutral-100 font-semibold divide-x divide-white whitespace-nowrap">
               <td className="px-2 py-1 inline-flex justify-center w-full">
                 <Dropdown
                   label={
