@@ -10,6 +10,9 @@ export default {
     extend: {
       fontFamily: {
         quicksand: ['Quicksand', 'sans-serif'],
+      },
+      boxShadow: {
+        'top-lg': '0 -5px 15px -6px rgba(0, 0, 0, 0.1)',
       }
     },
   },

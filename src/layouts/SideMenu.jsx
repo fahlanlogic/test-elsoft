@@ -46,7 +46,7 @@ export default function SideMenu() {
 
   return (
     <>
-      <nav className="relative z-50 bottom-0 shadow-lg py-4 md:py-7 bg-white text-blue-900 w-full md:max-w-20 h-fit md:min-h-[98vh] md:flex-1 inline-flex flex-row md:flex-col items-center justify-around md:justify-between md:gap-8">
+      <nav className="absolute z-50 bottom-0 shadow-top-lg md:shadow-lg py-4 md:py-7 bg-white text-blue-900 w-full md:max-w-20 h-fit md:min-h-screen md:static md:flex-1 md:flex flex-row md:flex-col items-center justify-around md:justify-between md:gap-8">
         <div className="hidden md:flex flex-col items-center gap-1">
           <img
             src="/logo-elsoft.png"
@@ -56,34 +56,36 @@ export default function SideMenu() {
           <p className="text-sm">testcase</p>
         </div>
         <div className="hidden md:block border border-b border-neutral-200 w-[70%]"></div>
-        <div className="flex md:flex-col md:gap-8 justify-between">
-          <Popover
-            className="border-0 outline-0 rounded-sm shadow-md bg-white"
-            trigger="hover"
-            content={contentPopover("Dashboard")}
-            placement="right">
-            <Link to="/dashboard">
-              <RiHomeSmile2Fill className="text-3xl hover:-translate-x-1 duration-300" />
-            </Link>
-          </Popover>
-          <Popover
-            className="border-0 outline-0 rounded-sm shadow-md bg-white"
-            trigger="hover"
-            content={contentPopover("Items")}
-            placement="right">
-            <Link to={`/list/item?${paramItems.toString()}`}>
-              <IoBagAdd className="text-3xl hover:-translate-x-1 duration-300" />
-            </Link>
-          </Popover>
-          <Popover
-            className="border-0 outline-0 rounded-sm shadow-md bg-white"
-            trigger="hover"
-            content={contentPopover("Stocks")}
-            placement="right">
-            <Link to={`/list/stock?${paramStock.toString()}`}>
-              <LuBoxes className="text-3xl hover:-translate-x-1 duration-300" />
-            </Link>
-          </Popover>
+        <div className="flex md:flex-col md:gap-8 justify-center gap-12 md:justify-between flex-1">
+          <div className="md:gap-8 inline-flex md:flex-col gap-12">
+            <Popover
+              className="border-0 outline-0 rounded-sm shadow-md bg-white"
+              trigger="hover"
+              content={contentPopover("Dashboard")}
+              placement="right">
+              <Link to="/dashboard">
+                <RiHomeSmile2Fill className="text-3xl hover:-translate-x-1 duration-300" />
+              </Link>
+            </Popover>
+            <Popover
+              className="border-0 outline-0 rounded-sm shadow-md bg-white"
+              trigger="hover"
+              content={contentPopover("Items")}
+              placement="right">
+              <Link to={`/list/item?${paramItems.toString()}`}>
+                <IoBagAdd className="text-3xl hover:-translate-x-1 duration-300" />
+              </Link>
+            </Popover>
+            <Popover
+              className="border-0 outline-0 rounded-sm shadow-md bg-white"
+              trigger="hover"
+              content={contentPopover("Stocks")}
+              placement="right">
+              <Link to={`/list/stock?${paramStock.toString()}`}>
+                <LuBoxes className="text-3xl hover:-translate-x-1 duration-300" />
+              </Link>
+            </Popover>
+          </div>
           <div className="">
             <Popover
               className="border-0 outline-0 rounded-sm shadow-md bg-white"

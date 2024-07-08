@@ -22,7 +22,7 @@ export default function DashboardLayout() {
     <main className="text-neutral-700 p-2 w-full flex-1 pt-6">
       <h1 className="text-3xl font-bold mb-8 mt-2">Dashboard Shortcut</h1>
       <div className="border border-b border-neutral-200 w-[98%] mb-8"></div>
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-4 md:flex-row">
         <Link
           to={`/list/item?${paramItems.toString()}`}
           className="flex items-center gap-4 bg-white rounded-md p-4 shadow-md hover:shadow-none duration-300">
