@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { Helmet } from "react-helmet";
 
 export default function Login() {
   const [captchaPassed, setCaptchaPassed] = useState(false); // state untuk mengecek captcha
@@ -119,6 +120,9 @@ export default function Login() {
 
   return (
     <main className="relative font-quicksand">
+      <Helmet>
+        <title>Login - Elsoft App</title>
+      </Helmet>
       <Toaster
         position="top-right"
         reverseOrder={false}
