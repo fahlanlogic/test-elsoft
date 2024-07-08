@@ -17,7 +17,7 @@ export default function ModalAddItem(items) {
     ItemUnit: "5daf6a23-472d-4921-9945-57674d5fd1aa",
     IsActive: "false",
   });
-  // console.log(formData);
+  console.log(formData);
 
   const handleChange = e => {
     const { name, value, type, checked } = e.target;
