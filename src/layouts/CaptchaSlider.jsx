@@ -28,8 +28,8 @@ export default function CaptchaSlider(props) {
 
   return (
     <Verify
-      width={280}
-      height={140}
+      width={250}
+      height={125}
       visible={true}
       onSuccess={success}
       onFail={fail}

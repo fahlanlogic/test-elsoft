@@ -125,16 +125,16 @@ export default function Login() {
         // containerStyle={{ marginTop: "65px" }}
       />
       <div className="h-56 w-full bg-blue-500 absolute -z-50 top-0 left-0"></div>
-      <div className="min-h-screen w-full flex items-center justify-center">
-        <div className="login-box flex bg-white w-full h-screen max-w-4xl max-h-[34rem] rounded-md shadow-xl">
-          <div className="w-1/2">
+      <div className="min-h-screen w-full flex items-center justify-center h-screen">
+        <div className="login-box md:flex bg-white max-w-2xl md:max-w-2xl lg:max-w-4xl max-h-fit rounded-md shadow-xl">
+          <div className="w-1/2 hidden md:block">
             <img
               className="w-full h-full object-cover rounded-l-md"
               src="https://img.freepik.com/free-photo/bank-card-mobile-phone-online-payment_107791-16646.jpg?t=st=1720188112~exp=1720191712~hmac=15ce1062b6d37129e3effb5f7629e7cc2b1fc22b2f2147d2254d1db1d3d90f40&w=826"
               alt=""
             />
           </div>
-          <div className="w-1/2 p-10">
+          <div className="w-full md:w-1/2 p-10">
             <h1 className="text-3xl text-neutral-700 font-bold mb-2">Login</h1>
             <p className="text-neutral-500 font-normal text-sm mb-4">
               Welcome back, please login to your account.
